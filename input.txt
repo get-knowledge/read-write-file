@@ -1,0 +1,6 @@
+101,Mouse,1200.00
+102,Keyboard,4500.00
+103,RAM,8000.00
+104,Monitor,5500.00
+105,UPS,8500.00
+106,Docking Station,15000.00
