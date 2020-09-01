@@ -3,6 +3,7 @@ package com.gobeyond.readwritefile.util;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -17,13 +18,18 @@ public class FileWriters {
 
 			FileWriter csvWriter = new FileWriter(FILE_NAME);
 
-			try {
-				csvWriter.append(content.toString());
-				csvWriter.append(",");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			content.stream().forEach(str -> {
+
+				try {
+					csvWriter.append(str.stream().map(Object::toString).collect(Collectors.joining(",")));
+					csvWriter.append(",");
+					csvWriter.append("\n");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			});
 
 			csvWriter.flush();
 			csvWriter.close();
