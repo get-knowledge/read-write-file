@@ -1,7 +1,6 @@
 package com.gobeyond.readwritefile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,21 +8,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.gobeyond.readwritefile.util.FIleReader;
-import com.gobeyond.readwritefile.util.FileWriter;
+import com.gobeyond.readwritefile.util.ListOfFilesInFolder;
 
 @SpringBootApplication
 public class ReadWriteFileApplication implements CommandLineRunner {
 
 	final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-	public ReadWriteFileApplication(FileWriter fileW, FIleReader fileR) {
-		this.fileW = fileW;
-		this.fileR = fileR;
+	public ReadWriteFileApplication(ListOfFilesInFolder listOfFilesInFolder) {
+		this.listOfFilesInFolder = listOfFilesInFolder;
 	}
 
-	private FileWriter fileW;
-	private FIleReader fileR;
+	private ListOfFilesInFolder listOfFilesInFolder;
+
+	public static File folder = new File("/home/dhananjay/Desktop/CollectionOfTextFiles/");
 
 	public static void main(String[] args) {
 		SpringApplication.run(ReadWriteFileApplication.class, args);
@@ -32,14 +30,9 @@ public class ReadWriteFileApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		String fileName = "input.txt";
-
-		List<String> response = new ArrayList<String>();
-
 		try {
 
-			response = fileR.readFile(fileName);
-			fileW.writeFile(response);
+			listOfFilesInFolder.listFilesForFolder(folder);
 
 		} catch (Exception e) {
 			LOGGER.error("IOException", e);

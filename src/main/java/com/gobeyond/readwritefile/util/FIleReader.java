@@ -15,31 +15,21 @@ public class FIleReader {
 	public List<String> readFile(String fileName) {
 
 		Path path = Paths.get(fileName);
-		List<String> outPut = new ArrayList<String>();
+
+		System.out.println(path);
+		List<String> list = new ArrayList<>();
 
 		try {
-			List<String> list = Files.readAllLines(path);
-			list.forEach(line -> {
+			list = Files.readAllLines(path);
+			
+			System.out.println(list.toString());
 
-				String[] str = line.split(",");
-
-				Double price = 0.0;
-				if (str[2].length() > 0)
-					price = Double.parseDouble(str[2]);
-
-				if (price > 5000.00) {
-
-					outPut.add(line);
-				}
-			}
-
-			);
 		} catch (IOException e) {
 
 			e.printStackTrace();
 
 		}
-		return outPut;
+		return list;
 	}
 
 }
