@@ -44,7 +44,7 @@ public class ListOfFilesInFolder {
 			}
 		}
 
-		//
+		// Write all response after read the file
 		fileW.writeFile(outPut);
 	}
 }

@@ -2,8 +2,6 @@ package com.gobeyond.readwritefile.util;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -15,22 +13,17 @@ public class FileWriters {
 
 	public void writeFile(List<List<String>> content) {
 
-		Path path = Paths.get(FILE_NAME);
-
 		try {
-			// Files.write(path, ",".getBytes(), StandardOpenOption.APPEND);
-			// Files.write(path, content, StandardOpenOption.APPEND);
 
 			FileWriter csvWriter = new FileWriter(FILE_NAME);
 
-				try {
-					csvWriter.append(content.toString());
-					csvWriter.append(",");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+			try {
+				csvWriter.append(content.toString());
+				csvWriter.append(",");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			csvWriter.flush();
 			csvWriter.close();

@@ -21,7 +21,7 @@ public class FIleReader {
 
 		try {
 			list = Files.readAllLines(path);
-			
+
 			System.out.println(list.toString());
 
 		} catch (IOException e) {
